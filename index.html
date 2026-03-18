@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanjay Kumar | Head Swimming Coach – Baroda Swimfront</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0a1628;
+    --deep: #0d2240;
+    --ocean: #0e4d92;
+    --tide: #1a73c8;
+    --sky: #38a8f5;
+    --foam: #a8d8f0;
+    --mist: #e8f4fd;
+    --white: #ffffff;
+    --gold: #f5c842;
+    --coral: #ff6b6b;
+    --text: #1a2a3a;
+    --muted: #5a7a96;
+    --card-bg: rgba(255,255,255,0.95);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 999;
+    background: rgba(10, 22, 40, 0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(56, 168, 245, 0.15);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--white);
+    display: flex; align-items: center; gap: 10px; text-decoration: none;
+  }
+  .nav-logo span { color: var(--sky); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.75); text-decoration: none;
+    font-size: 0.88rem; font-weight: 500; letter-spacing: 0.03em;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--sky); }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--tide), var(--sky));
+    color: white; border: none; padding: 9px 22px;
+    border-radius: 50px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 600; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s; white-space: nowrap;
+  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,115,200,0.45); }
+
+/* Hamburger button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
+}
+.hamburger .bar {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background: #fff;
+  border-radius: 3px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.hamburger.is-open .bar:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.hamburger.is-open .bar:nth-child(2) { opacity: 0; }
+.hamburger.is-open .bar:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+/* Mobile dropdown panel */
+.mobile-nav {
+  position: fixed;
+  top: 68px;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: rgba(8, 17, 31, 0.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(56,168,245,0.2);
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.38s ease;
+  display: flex;
+}
+.mobile-nav.is-open {
+  max-height: 500px;
+}
+.mobile-nav a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 15px 7%;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.2s, color 0.2s;
+}
+.mobile-nav a:last-child { border-bottom: none; }
+.mobile-nav a:hover { background: rgba(56,168,245,0.08); color: var(--sky); }
+
+/* Hide/show based on screen size */
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+}
+@media (min-width: 861px) {
+  .mobile-nav { display: none !important; }
+}
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #050e1d 0%, #0a1e3d 40%, #0d3460 70%, #0e4d92 100%);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+  }
+
+  /* Animated water rings */
+  .water-ring {
+    position: absolute; border-radius: 50%;
+    border: 1px solid rgba(56,168,245,0.15);
+    animation: ripple 6s ease-out infinite;
+  }
+  .water-ring:nth-child(1) { width: 300px; height: 300px; bottom: -80px; right: -80px; animation-delay: 0s; }
+  .water-ring:nth-child(2) { width: 500px; height: 500px; bottom: -200px; right: -200px; animation-delay: 1s; }
+  .water-ring:nth-child(3) { width: 700px; height: 700px; bottom: -320px; right: -320px; animation-delay: 2s; }
+  .water-ring:nth-child(4) { width: 900px; height: 900px; bottom: -440px; right: -440px; animation-delay: 3s; }
+  @keyframes ripple {
+    0% { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.15); }
+  }
+
+  /* bubbles */
+  .bubble {
+    position: absolute; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.35), rgba(56,168,245,0.08));
+    border: 1px solid rgba(255,255,255,0.2);
+    animation: float-up linear infinite;
+  }
+  @keyframes float-up {
+    0%   { transform: translateY(0) translateX(0); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.6; }
+    100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+  }
+
+  /* wave at bottom */
+  .wave-divider {
+    position: absolute; bottom: -2px; left: 0; width: 100%; overflow: hidden; line-height: 0;
+  }
+  .wave-divider svg { display: block; }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    max-width: 1200px; margin: 0 auto; width: 100%;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(56,168,245,0.15); border: 1px solid rgba(56,168,245,0.3);
+    color: var(--sky); border-radius: 50px; padding: 6px 16px;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 22px;
+    animation: fadeSlideUp 0.7s ease both;
+  }
+  .hero-badge::before { content: '🏊'; font-size: 1rem; }
+
+  h1.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    color: var(--white); line-height: 1.12; margin-bottom: 12px;
+    animation: fadeSlideUp 0.8s 0.1s ease both;
+  }
+  h1.hero-title em { color: var(--sky); font-style: normal; }
+
+  .hero-tagline {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: rgba(168,216,240,0.85); line-height: 1.6; margin-bottom: 32px;
+    font-weight: 300; animation: fadeSlideUp 0.8s 0.2s ease both;
+  }
+
+  .hero-stats {
+    display: flex; gap: 32px; margin-bottom: 36px;
+    animation: fadeSlideUp 0.8s 0.3s ease both;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    display: block; font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; color: var(--gold); line-height: 1;
+  }
+  .stat-label { font-size: 0.72rem; color: var(--foam); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .hero-buttons {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeSlideUp 0.8s 0.4s ease both;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--tide), var(--sky));
+    color: white; border: none; padding: 14px 32px; border-radius: 50px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600;
+    cursor: pointer; transition: transform 0.25s, box-shadow 0.25s;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(26,115,200,0.5); }
+  .btn-ghost {
+    background: transparent; color: var(--foam);
+    border: 1.5px solid rgba(168,216,240,0.4);
+    padding: 14px 32px; border-radius: 50px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
+    cursor: pointer; transition: all 0.25s; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-ghost:hover { border-color: var(--sky); color: var(--sky); background: rgba(56,168,245,0.08); }
+
+  /* Coach photo */
+  .hero-photo-wrap {
+    position: relative; display: flex; justify-content: center;
+    animation: fadeSlideUp 0.9s 0.2s ease both;
+  }
+  .photo-ring {
+    position: absolute; inset: -16px; border-radius: 50%;
+    border: 2px solid rgba(56,168,245,0.35);
+    animation: spin-slow 18s linear infinite;
+  }
+  .photo-ring-2 {
+    position: absolute; inset: -32px; border-radius: 50%;
+    border: 1px dashed rgba(56,168,245,0.2);
+    animation: spin-slow 28s linear reverse infinite;
+  }
+  @keyframes spin-slow { to { transform: rotate(360deg); } }
+  .coach-photo {
+    width: 320px; height: 320px; border-radius: 50%; object-fit: cover;
+    border: 4px solid rgba(56,168,245,0.5);
+    box-shadow: 0 0 60px rgba(14,77,146,0.7), 0 0 120px rgba(14,77,146,0.3);
+    position: relative; z-index: 1;
+    background: linear-gradient(160deg, #1a4d8c, #0a2a5a);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8rem;
+  }
+  .coach-photo-placeholder {
+    width: 320px; height: 320px; border-radius: 50%;
+    border: 4px solid rgba(56,168,245,0.5);
+    box-shadow: 0 0 60px rgba(14,77,146,0.7), 0 0 120px rgba(14,77,146,0.3);
+    position: relative; z-index: 1;
+    background: linear-gradient(160deg, #1a4d8c 0%, #0a2a5a 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 8px;
+    overflow: hidden;
+  }
+  .coach-photo-placeholder::after {
+    content: '🏊‍♂️';
+    font-size: 7rem; display: block; filter: drop-shadow(0 0 20px rgba(56,168,245,0.8));
+  }
+  .photo-badge {
+    position: absolute; bottom: 20px; right: 20px;
+    background: var(--gold); color: var(--navy);
+    border-radius: 12px; padding: 8px 14px; z-index: 2;
+    font-size: 0.75rem; font-weight: 700; text-align: center; line-height: 1.3;
+    box-shadow: 0 4px 16px rgba(245,200,66,0.4);
+  }
+
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── SECTIONS SHARED ─── */
+  section { padding: 90px 5%; }
+
+  .section-label {
+    text-align: center;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--sky); margin-bottom: 12px;
+  }
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    text-align: center; line-height: 1.2; margin-bottom: 16px;
+  }
+  .section-sub {
+    text-align: center; max-width: 560px; margin: 0 auto 60px;
+    color: var(--muted); font-size: 1rem; line-height: 1.7;
+  }
+
+  /* ─── ABOUT ─── */
+  #about {
+    background: var(--mist);
+  }
+  #about h2.section-title { color: var(--navy); }
+  #about .section-sub { color: var(--muted); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .about-img {
+    border-radius: 24px; overflow: hidden; position: relative;
+    box-shadow: 0 24px 60px rgba(10,22,40,0.15);
+  }
+  .about-img-placeholder {
+    background: linear-gradient(160deg, #0e4d92, #1a73c8, #38a8f5);
+    height: 420px; border-radius: 24px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6rem; position: relative; overflow: hidden;
+  }
+  .about-img-placeholder::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+    background: linear-gradient(0deg, rgba(10,22,40,0.5), transparent);
+  }
+  .about-img-label {
+    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+    background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+    color: white; font-size: 0.8rem; padding: 6px 16px; border-radius: 50px;
+    white-space: nowrap; font-weight: 500;
+  }
+  .about-content { padding: 10px 0; }
+  .about-content p {
+    color: #2a4a6a; font-size: 1.05rem; line-height: 1.85;
+    margin-bottom: 20px; font-weight: 300;
+  }
+  .about-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .about-tag {
+    background: rgba(14,77,146,0.1); color: var(--ocean);
+    border: 1px solid rgba(14,77,146,0.2); border-radius: 50px;
+    padding: 6px 16px; font-size: 0.82rem; font-weight: 500;
+  }
+
+  /* ─── SPECIALITIES ─── */
+  #specialities {
+    background: linear-gradient(180deg, #0d2240 0%, #0a1628 100%);
+  }
+  #specialities h2.section-title { color: white; }
+  #specialities .section-sub { color: var(--foam); }
+  .spec-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px; max-width: 1100px; margin: 0 auto;
+  }
+  .spec-card {
+    background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);
+    border: 1px solid rgba(56,168,245,0.2); border-radius: 20px;
+    padding: 32px 28px; transition: all 0.35s; cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .spec-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--tide), var(--sky));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+  }
+  .spec-card:hover { transform: translateY(-8px); border-color: rgba(56,168,245,0.5);
+    background: rgba(56,168,245,0.08); box-shadow: 0 20px 50px rgba(14,77,146,0.4); }
+  .spec-card:hover::before { transform: scaleX(1); }
+  .spec-icon { font-size: 2.2rem; margin-bottom: 16px; display: block; }
+  .spec-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: white; margin-bottom: 8px; }
+  .spec-desc { font-size: 0.88rem; color: var(--foam); line-height: 1.65; font-weight: 300; }
+
+  /* ─── EXPERIENCE ─── */
+  #experience { background: var(--white); }
+  #experience h2.section-title { color: var(--navy); }
+  #experience .section-sub { color: var(--muted); }
+  .exp-inner { max-width: 1000px; margin: 0 auto; }
+  .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 48px; }
+  .exp-card {
+    border-left: 4px solid var(--tide); padding: 28px 28px 28px 32px;
+    background: var(--mist); border-radius: 0 16px 16px 0;
+    transition: box-shadow 0.3s;
+  }
+  .exp-card:hover { box-shadow: -4px 0 0 var(--sky), 0 12px 36px rgba(14,77,146,0.1); }
+  .exp-year {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--tide); margin-bottom: 6px;
+  }
+  .exp-role { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--navy); margin-bottom: 6px; }
+  .exp-place { font-size: 0.9rem; color: var(--muted); margin-bottom: 10px; }
+  .exp-desc { font-size: 0.88rem; color: #3a5a7a; line-height: 1.65; }
+
+  .qual-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+  .qual-chip {
+    display: flex; align-items: center; gap: 12px;
+    background: linear-gradient(135deg, rgba(14,77,146,0.08), rgba(56,168,245,0.06));
+    border: 1.5px solid rgba(14,77,146,0.2); border-radius: 14px;
+    padding: 16px 24px; font-size: 0.9rem; color: var(--navy);
+    font-weight: 500; transition: all 0.3s;
+  }
+  .qual-chip:hover { border-color: var(--tide); background: rgba(14,77,146,0.12); transform: translateY(-2px); }
+  .qual-chip-icon { font-size: 1.5rem; }
+
+  /* ─── TRAINING / BATCHES ─── */
+  #training {
+    background: linear-gradient(160deg, #0a1628, #0d2e56);
+    position: relative; overflow: hidden;
+  }
+  #training h2.section-title { color: white; }
+  #training .section-sub { color: var(--foam); }
+  .training-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px; max-width: 1100px; margin: 0 auto;
+  }
+  .batch-card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px; padding: 36px 32px; position: relative; overflow: hidden;
+    transition: all 0.35s;
+  }
+  .batch-card:hover { transform: translateY(-6px); border-color: rgba(56,168,245,0.4);
+    background: rgba(56,168,245,0.08); }
+  .batch-card-glow {
+    position: absolute; width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(56,168,245,0.12) 0%, transparent 70%);
+    top: -50px; right: -50px; pointer-events: none;
+  }
+  .batch-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+  .batch-icon-wrap {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: linear-gradient(135deg, var(--tide), var(--sky));
+    display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+  .batch-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: white; }
+  .batch-sub { font-size: 0.8rem; color: var(--foam); }
+  .batch-times { margin-bottom: 20px; }
+  .time-slot {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+    font-size: 0.92rem; color: rgba(255,255,255,0.8);
+  }
+  .time-slot:last-child { border-bottom: none; }
+  .time-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--sky); flex-shrink: 0; }
+  .batch-lang {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px;
+  }
+  .lang-tag {
+    background: rgba(56,168,245,0.15); color: var(--sky);
+    border: 1px solid rgba(56,168,245,0.25); border-radius: 50px;
+    padding: 4px 12px; font-size: 0.75rem; font-weight: 600;
+  }
+
+  /* ─── AGE GROUPS ─── */
+  #ages {
+    background: var(--mist);
+  }
+  #ages h2.section-title { color: var(--navy); }
+  #ages .section-sub { color: var(--muted); }
+  .ages-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px; max-width: 1000px; margin: 0 auto;
+  }
+  .age-card {
+    text-align: center; padding: 40px 24px; border-radius: 24px;
+    background: white; transition: all 0.35s;
+    box-shadow: 0 4px 20px rgba(14,77,146,0.07);
+    border: 1px solid rgba(14,77,146,0.08); cursor: default;
+  }
+  .age-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(14,77,146,0.18); }
+  .age-emoji { font-size: 3.5rem; display: block; margin-bottom: 16px; }
+  .age-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--navy); margin-bottom: 6px; }
+  .age-range {
+    font-size: 0.82rem; font-weight: 600; color: var(--tide);
+    letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px;
+  }
+  .age-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.65; }
+
+  /* ─── WHY CHOOSE ME ─── */
+  #why {
+    background: linear-gradient(135deg, #0a1628 0%, #0e4d92 50%, #0a1628 100%);
+    position: relative;
+  }
+  #why h2.section-title { color: white; }
+  #why .section-sub { color: var(--foam); }
+  .why-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .why-card {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px; padding: 36px 28px; text-align: center; transition: all 0.35s;
+  }
+  .why-card:hover { background: rgba(255,255,255,0.12); transform: translateY(-6px); }
+  .why-icon {
+    width: 70px; height: 70px; border-radius: 20px; margin: 0 auto 20px;
+    display: flex; align-items: center; justify-content: center; font-size: 2rem;
+  }
+  .why-icon.blue { background: linear-gradient(135deg, rgba(26,115,200,0.3), rgba(56,168,245,0.2)); }
+  .why-icon.gold { background: linear-gradient(135deg, rgba(245,200,66,0.3), rgba(245,200,66,0.15)); }
+  .why-icon.teal { background: linear-gradient(135deg, rgba(0,200,180,0.3), rgba(0,200,180,0.15)); }
+  .why-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: white; margin-bottom: 12px; }
+  .why-desc { font-size: 0.88rem; color: var(--foam); line-height: 1.7; font-weight: 300; }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials { background: var(--white); }
+  #testimonials h2.section-title { color: var(--navy); }
+  #testimonials .section-sub { color: var(--muted); }
+  .testi-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px; max-width: 1100px; margin: 0 auto;
+  }
+  .testi-card {
+    background: var(--mist); border-radius: 20px; padding: 32px;
+    border: 1px solid rgba(14,77,146,0.1); transition: all 0.35s; position: relative;
+  }
+  .testi-card:hover { box-shadow: 0 16px 48px rgba(14,77,146,0.12); transform: translateY(-4px); }
+  .testi-quote-mark {
+    font-family: 'Playfair Display', serif; font-size: 5rem; line-height: 0.5;
+    color: rgba(14,77,146,0.12); position: absolute; top: 24px; left: 28px;
+    font-style: italic;
+  }
+  .testi-text {
+    font-size: 0.95rem; color: #2a4a6a; line-height: 1.75; margin-bottom: 24px;
+    font-style: italic; padding-top: 20px; font-weight: 300;
+  }
+  .testi-author { display: flex; align-items: center; gap: 14px; }
+  .testi-avatar {
+    width: 46px; height: 46px; border-radius: 50%; font-size: 1.5rem;
+    background: linear-gradient(135deg, var(--tide), var(--sky));
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    color: white; font-weight: 700; font-family: 'Playfair Display', serif;
+  }
+  .testi-name { font-weight: 600; color: var(--navy); font-size: 0.92rem; }
+  .testi-role { font-size: 0.78rem; color: var(--muted); }
+  .testi-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 14px; }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: linear-gradient(160deg, #050e1d, #0a1e3d, #0d3460);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  #contact::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center 80%, rgba(14,77,146,0.4) 0%, transparent 70%);
+  }
+  #contact h2.section-title { color: white; position: relative; z-index: 1; }
+  #contact .section-sub { color: var(--foam); position: relative; z-index: 1; }
+
+  .contact-cards {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-bottom: 48px;
+    position: relative; z-index: 1;
+  }
+  .contact-card {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(56,168,245,0.2);
+    border-radius: 18px; padding: 28px 36px; text-align: center;
+    transition: all 0.3s; text-decoration: none; display: block;
+  }
+  .contact-card:hover { background: rgba(56,168,245,0.12); border-color: rgba(56,168,245,0.5);
+    transform: translateY(-4px); }
+  .contact-card-icon { font-size: 2rem; margin-bottom: 10px; }
+  .contact-card-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--sky); font-weight: 600; margin-bottom: 6px; }
+  .contact-card-value { color: white; font-size: 0.95rem; font-weight: 500; }
+
+  .cta-group { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap;
+    position: relative; z-index: 1; }
+
+  .btn-big {
+    padding: 17px 42px; font-size: 1rem; border-radius: 50px; font-weight: 700;
+    cursor: pointer; transition: all 0.3s; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-big.primary {
+    background: linear-gradient(135deg, var(--tide), var(--sky));
+    color: white; border: none; box-shadow: 0 8px 32px rgba(26,115,200,0.4);
+  }
+  .btn-big.primary:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(26,115,200,0.6); }
+  .btn-big.gold {
+    background: var(--gold); color: var(--navy); border: none;
+    box-shadow: 0 8px 32px rgba(245,200,66,0.35);
+  }
+  .btn-big.gold:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(245,200,66,0.55); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #040c18;
+    border-top: 1px solid rgba(56,168,245,0.12);
+    padding: 48px 5% 32px;
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 32px; margin-bottom: 36px;
+  }
+  .footer-brand { max-width: 280px; }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; color: white; margin-bottom: 12px;
+  }
+  .footer-logo span { color: var(--sky); }
+  .footer-tagline { font-size: 0.85rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
+  .footer-links h4 { color: rgba(255,255,255,0.6); font-size: 0.72rem; letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 16px; }
+  .footer-links ul { list-style: none; }
+  .footer-links li { margin-bottom: 10px; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none;
+    font-size: 0.88rem; transition: color 0.25s; }
+  .footer-links a:hover { color: var(--sky); }
+  .footer-contact h4 { color: rgba(255,255,255,0.6); font-size: 0.72rem; letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 16px; }
+  .footer-contact p { color: rgba(255,255,255,0.5); font-size: 0.88rem; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px;
+    text-align: center; color: rgba(255,255,255,0.25); font-size: 0.8rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  /* ─── PLACEHOLDER IMAGES ─── */
+  .pool-placeholder {
+    background: linear-gradient(160deg, #0d4a8c, #1a73c8, #4dadd8);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem; border-radius: 20px; position: relative; overflow: hidden;
+  }
+  .pool-placeholder::after {
+    content: '';
+    position: absolute; bottom: 0; left: -10%; width: 120%;
+    height: 35%; background: rgba(255,255,255,0.1);
+    border-radius: 50% 50% 0 0 / 80% 80% 0 0;
+    animation: wave-anim 3s ease-in-out infinite;
+  }
+  @keyframes wave-anim {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ─── DIVIDER WAVE ─── */
+  .wave-sep svg { display: block; }
+
+  /* ─── SCROLL ANIMATIONS ─── */
+  .reveal {
+    opacity: 0; transform: translateY(32px); transition: opacity 0.7s, transform 0.7s;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-stats { justify-content: center; }
+    .hero-buttons { justify-content: center; }
+    .hero-photo-wrap { order: -1; }
+    .coach-photo-placeholder { width: 240px; height: 240px; }
+    .photo-ring { inset: -12px; }
+    .photo-ring-2 { inset: -24px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .exp-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 60px 5%; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a class="nav-logo" href="#hero">🌊 <span>Sanjay</span>Kumar</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#specialities">Specialities</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#training">Batches</a></li>
+    <li><a href="#ages">Age Groups</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+<button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+</nav>
+
+<!-- Mobile dropdown -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#about"        class="nav-close-link">👤 About</a>
+  <a href="#specialities" class="nav-close-link">🏊 Specialities</a>
+  <a href="#experience"   class="nav-close-link">🎓 Experience</a>
+  <a href="#training"     class="nav-close-link">🕐 Batches</a>
+  <a href="#ages"         class="nav-close-link">👨‍👩‍👧‍👦 Age Groups</a>
+  <a href="#testimonials" class="nav-close-link">⭐ Reviews</a>
+  <a href="#contact"      class="nav-close-link">📞 Contact</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <!-- Animated rings -->
+  <div class="water-ring"></div>
+  <div class="water-ring"></div>
+  <div class="water-ring"></div>
+  <div class="water-ring"></div>
+
+  <!-- Bubbles (generated by JS) -->
+  <div id="bubbles"></div>
+
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">Head Coach · Baroda Swimfront</div>
+      <h1 class="hero-title">Dive into<br><em>Confidence</em><br>with Expert Coaching</h1>
+      <p class="hero-tagline">Every great swimmer starts with a single stroke. Let Coach Sanjay guide you from first splash to finish line — for all ages, all goals.</p>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">5+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">4</span>
+          <span class="stat-label">Stroke Styles</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">All</span>
+          <span class="stat-label">Age Groups</span>
+        </div>
+      </div>
+
+      <div class="hero-buttons">
+        <a href="tel:+919896424193" class="btn-primary">📞 Call Coach Sanjay</a>
+        <a href="#about" class="btn-ghost">Learn More ↓</a>
+      </div>
+    </div>
+
+    <div class="hero-photo-wrap">
+      <div class="photo-ring"></div>
+      <div class="photo-ring-2"></div>
+      <div class="coach-photo-placeholder"></div>
+      <div class="photo-badge">🏊‍♂️<br>National<br>Certified</div>
+    </div>
+  </div>
+
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C200,80 400,0 600,40 C800,80 1000,0 1200,40 C1320,60 1380,50 1440,40 L1440,80 L0,80 Z" fill="#e8f4fd"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="section-label">About the Coach</div>
+  <h2 class="section-title">Meet Sanjay Kumar</h2>
+  <p class="section-sub">A dedicated coach who believes every stroke counts — and every swimmer has a champion inside.</p>
+
+  <div class="about-grid">
+    <div class="about-img reveal">
+      <div class="about-img-placeholder pool-placeholder"><img src="/Users/krish/Desktop/sanjay-sir/photo.jpeg"></div>
+      <span class="about-img-label">Coaching at Baroda Swimfront</span>
+    </div>
+    <div class="about-content reveal">
+      <p>Hi, I'm <strong>Sanjay Kumar</strong> — Head Coach at Baroda Swimfront and a lifelong lover of the water. With over <strong>5 years of hands-on coaching experience</strong>, I've had the privilege of guiding swimmers of all ages — from nervous beginners taking their first dip, to seasoned athletes refining their competitive edge.</p>
+      <p>My coaching philosophy is simple: <em>swimming is a life skill, not just a sport.</em> I focus on water safety, building confidence, and developing real technique — all wrapped in a warm, encouraging environment where learners actually enjoy showing up.</p>
+      <p>Holding a <strong>National Certificate in Swimming</strong>, I bring both the credentials and the passion to make every session count. Whether you're 7 or 70, there's a place for you in my pool.</p>
+
+      <div class="about-tags">
+        <span class="about-tag">🎓 Nationally Certified</span>
+        <span class="about-tag">📍 Baroda Swimfront</span>
+        <span class="about-tag">🌐 English & Hindi</span>
+        <span class="about-tag">❤️ Water Safety Advocate</span>
+        <span class="about-tag">🏆 5+ Years Coaching</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-sep" style="background:#e8f4fd;">
+  <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#0d2240"/>
+  </svg>
+</div>
+
+<!-- ─── SPECIALITIES ─── -->
+<section id="specialities">
+  <div class="section-label">What I Teach</div>
+  <h2 class="section-title">My Specialities</h2>
+  <p class="section-sub">From mastering the perfect butterfly to building endurance for open water — here's where I shine.</p>
+
+  <div class="spec-grid">
+    <div class="spec-card reveal">
+      <span class="spec-icon">🏊</span>
+      <div class="spec-title">Freestyle</div>
+      <p class="spec-desc">The foundation of swimming. I help you build speed, efficiency, and proper breathing rhythm from the ground up.</p>
+    </div>
+    <div class="spec-card reveal">
+      <span class="spec-icon">🤽</span>
+      <div class="spec-title">Backstroke</div>
+      <p class="spec-desc">Master the relaxed, rhythmic backstroke — great for posture, coordination, and back-muscle development.</p>
+    </div>
+    <div class="spec-card reveal">
+      <span class="spec-icon">🌊</span>
+      <div class="spec-title">Breaststroke</div>
+      <p class="spec-desc">A classic, elegant stroke perfect for endurance and relaxation. I focus on timing and form for maximum efficiency.</p>
+    </div>
+    <div class="spec-card reveal">
+      <span class="spec-icon">🦋</span>
+      <div class="spec-title">Butterfly</div>
+      <p class="spec-desc">The most powerful stroke in swimming. I break it down into achievable steps so you actually enjoy learning it.</p>
+    </div>
+    <div class="spec-card reveal">
+      <span class="spec-icon">🌅</span>
+      <div class="spec-title">Open Water Training</div>
+      <p class="spec-desc">Prepare for lakes, rivers, and open-water events with safety-first techniques and environmental awareness.</p>
+    </div>
+    <div class="spec-card reveal">
+      <span class="spec-icon">🏅</span>
+      <div class="spec-title">Competitive Coaching</div>
+      <p class="spec-desc">From beginner to competitive level — race strategy, turns, starts, and performance optimization for meets.</p>
+    </div>
+    <div class="spec-card reveal">
+      <span class="spec-icon">💪</span>
+      <div class="spec-title">Fitness Swimming</div>
+      <p class="spec-desc">Low-impact, full-body conditioning in the water. Perfect for weight management, cardio, and overall wellness.</p>
+    </div>
+    <div class="spec-card reveal">
+      <span class="spec-icon">🧓</span>
+      <div class="spec-title">Senior Citizen Training</div>
+      <p class="spec-desc">Specially adapted programs for seniors — gentle, safe, and deeply beneficial for joints, balance, and mental health.</p>
+    </div>
+    <div class="spec-card reveal">
+      <span class="spec-icon">🩺</span>
+      <div class="spec-title">Rehabilitation Swimming</div>
+      <p class="spec-desc">Therapeutic aquatic sessions designed in collaboration with recovery goals — ideal post-injury or post-surgery.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-sep" style="background:#0a1628;">
+  <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,30 C360,0 720,60 1080,30 C1260,15 1360,40 1440,30 L1440,60 L0,60 Z" fill="#ffffff"/>
+  </svg>
+</div>
+
+<!-- ─── EXPERIENCE & QUALIFICATIONS ─── -->
+<section id="experience">
+  <div class="section-label">Track Record</div>
+  <h2 class="section-title">Experience & Qualifications</h2>
+  <p class="section-sub">Built over years of dedication, certification, and real-world coaching impact.</p>
+
+  <div class="exp-inner">
+    <div class="exp-grid reveal">
+      <div class="exp-card">
+        <div class="exp-year">2020 – Present</div>
+        <div class="exp-role">Head Coach</div>
+        <div class="exp-place">📍 Baroda Swimfront, Vadodara</div>
+        <p class="exp-desc">Leading all training programs, managing batches across age groups, and driving a culture of water safety and swimmer growth. Developed personalised coaching plans for 100+ members.</p>
+      </div>
+      <div class="exp-card">
+        <div class="exp-year">2019 – 2020</div>
+        <div class="exp-role">Assistant Swimming Coach</div>
+        <div class="exp-place">📍 Vadodara Aquatics Centre</div>
+        <p class="exp-desc">Assisted senior coaches with batch training, technique correction, and beginner onboarding. Specialised in youth and teen swimmer development.</p>
+      </div>
+    </div>
+
+    <div class="qual-grid reveal">
+      <div class="qual-chip"><span class="qual-chip-icon">🎓</span> National Certificate in Swimming</div>
+      <div class="qual-chip"><span class="qual-chip-icon">🛟</span> Water Safety & Lifesaving Certified</div>
+      <div class="qual-chip"><span class="qual-chip-icon">🏊</span> 5+ Years Active Coaching</div>
+      <div class="qual-chip"><span class="qual-chip-icon">👨‍👩‍👧‍👦</span> All Age Group Trained</div>
+      <div class="qual-chip"><span class="qual-chip-icon">🩺</span> Rehabilitation Aquatics Trained</div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-sep" style="background:#ffffff;">
+  <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,20 C200,60 500,0 800,40 C1000,60 1200,10 1440,30 L1440,60 L0,60 Z" fill="#0a1628"/>
+  </svg>
+</div>
+
+<!-- ─── TRAINING / BATCHES ─── -->
+<section id="training">
+  <div class="section-label">Schedule</div>
+  <h2 class="section-title">Training Batches</h2>
+  <p class="section-sub">Pick a time that fits your lifestyle. Morning dips or evening sessions — we've got a slot for everyone.</p>
+
+  <div class="training-grid">
+    <div class="batch-card reveal">
+      <div class="batch-card-glow"></div>
+      <div class="batch-header">
+        <div class="batch-icon-wrap">🌅</div>
+        <div>
+          <div class="batch-title">Morning Batches</div>
+          <div class="batch-sub">Fresh start, clear water</div>
+        </div>
+      </div>
+      <div class="batch-times">
+        <div class="time-slot"><span class="time-dot"></span> 6:00 AM – 7:00 AM</div>
+        <div class="time-slot"><span class="time-dot"></span> 7:00 AM – 8:00 AM</div>
+      </div>
+      <p style="font-size:0.85rem; color:var(--foam); line-height:1.6; font-weight:300;">Start your day right. Morning sessions are energising, calm, and perfect for building consistency before the day gets busy.</p>
+    </div>
+
+    <div class="batch-card reveal">
+      <div class="batch-card-glow"></div>
+      <div class="batch-header">
+        <div class="batch-icon-wrap">🌆</div>
+        <div>
+          <div class="batch-title">Evening Batches</div>
+          <div class="batch-sub">Unwind & train together</div>
+        </div>
+      </div>
+      <div class="batch-times">
+        <div class="time-slot"><span class="time-dot"></span> 5:00 PM – 6:00 PM</div>
+        <div class="time-slot"><span class="time-dot"></span> 6:00 PM – 7:00 PM</div>
+      </div>
+      <p style="font-size:0.85rem; color:var(--foam); line-height:1.6; font-weight:300;">Perfect for students and working professionals. A refreshing post-school or post-work session to train, unwind, and improve.</p>
+    </div>
+
+    <div class="batch-card reveal">
+      <div class="batch-card-glow"></div>
+      <div class="batch-header">
+        <div class="batch-icon-wrap">📋</div>
+        <div>
+          <div class="batch-title">Session Details</div>
+          <div class="batch-sub">What to expect</div>
+        </div>
+      </div>
+      <div class="batch-times">
+        <div class="time-slot"><span class="time-dot"></span> Personal technique assessment</div>
+        <div class="time-slot"><span class="time-dot"></span> Drills & structured practice</div>
+        <div class="time-slot"><span class="time-dot"></span> Water safety fundamentals</div>
+        <div class="time-slot"><span class="time-dot"></span> Progress tracking each week</div>
+      </div>
+      <div class="batch-lang">
+        <span class="lang-tag">🇬🇧 English</span>
+        <span class="lang-tag">🇮🇳 Hindi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-sep" style="background:#0a1628;">
+  <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,40 C300,0 600,60 900,20 C1100,0 1280,50 1440,40 L1440,60 L0,60 Z" fill="#e8f4fd"/>
+  </svg>
+</div>
+
+<!-- ─── AGE GROUPS ─── -->
+<section id="ages">
+  <div class="section-label">Who Can Join</div>
+  <h2 class="section-title">All Age Groups Welcome</h2>
+  <p class="section-sub">Swimming has no age limit. Every batch is thoughtfully designed for the needs of that stage of life.</p>
+
+  <div class="ages-grid">
+    <div class="age-card reveal">
+      <span class="age-emoji">🧑‍🎓</span>
+      <div class="age-title">Teens</div>
+      <div class="age-range">Ages 12 – 18</div>
+      <p class="age-desc">Energy-packed sessions focused on technique, fitness, and competitive swim skills. Perfect for school athletes and beginners alike.</p>
+    </div>
+    <div class="age-card reveal">
+      <span class="age-emoji">🧑‍💼</span>
+      <div class="age-title">Adults</div>
+      <div class="age-range">Ages 18 – 45</div>
+      <p class="age-desc">Goal-oriented training for fitness, stress relief, open water prep, or just finally learning to swim properly.</p>
+    </div>
+    <div class="age-card reveal">
+      <span class="age-emoji">🧓</span>
+      <div class="age-title">Seniors</div>
+      <div class="age-range">Ages 45+</div>
+      <p class="age-desc">Gentle, therapeutic aquatic sessions that improve mobility, joint health, and overall wellbeing — safe and supportive.</p>
+    </div>
+    <div class="age-card reveal" style="border: 2px solid rgba(14,77,146,0.25); background: linear-gradient(135deg, rgba(14,77,146,0.05), rgba(56,168,245,0.04));">
+      <span class="age-emoji">👨‍👩‍👧‍👦</span>
+      <div class="age-title">All Ages</div>
+      <div class="age-range">Everyone</div>
+      <p class="age-desc">Family groups, mixed-age learners — no one is left behind. Coach Sanjay adapts to every swimmer's pace and comfort level.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-sep" style="background:#e8f4fd;">
+  <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,20 C400,60 800,0 1200,40 C1320,50 1400,30 1440,20 L1440,60 L0,60 Z" fill="#0a1628"/>
+  </svg>
+</div>
+
+<!-- ─── WHY CHOOSE ME ─── -->
+<section id="why">
+  <div class="section-label">Why Sanjay?</div>
+  <h2 class="section-title">Why Choose Me</h2>
+  <p class="section-sub">There are coaches, and then there are coaches who genuinely change how you feel about the water.</p>
+
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-icon blue">🎯</div>
+      <div class="why-title">Structured & Goal-Driven</div>
+      <p class="why-desc">Every session has a purpose. From your first assessment to advanced drills, progress is planned, tracked, and celebrated with you.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon gold">😊</div>
+      <div class="why-title">Friendly & Encouraging</div>
+      <p class="why-desc">No harsh pressure, no intimidation. Coach Sanjay creates a safe, playful space where learners feel confident to try, fail, and grow.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon teal">🛡️</div>
+      <div class="why-title">Safety First, Always</div>
+      <p class="why-desc">Water safety is never an afterthought. Every class includes life-saving awareness, making swimmers safer in and out of the pool.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon blue">🧬</div>
+      <div class="why-title">Personalised Approach</div>
+      <p class="why-desc">No two swimmers are the same. Each member gets individual attention, tailored feedback, and a plan built around their body and goals.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon gold">💬</div>
+      <div class="why-title">Bilingual Coaching</div>
+      <p class="why-desc">Instructions delivered fluently in both English and Hindi — ensuring nothing gets lost in translation, ever.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon teal">🌱</div>
+      <div class="why-title">Long-Term Growth</div>
+      <p class="why-desc">Whether you join for fitness or future competitions, the skills and discipline built here will last a lifetime beyond the pool.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-sep" style="background:#0a1628;">
+  <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,30 C180,0 360,60 540,30 C720,0 900,60 1080,30 C1260,0 1380,50 1440,30 L1440,60 L0,60 Z" fill="#ffffff"/>
+  </svg>
+</div>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section id="testimonials">
+  <div class="section-label">What Members Say</div>
+  <h2 class="section-title">Real Stories, Real Results</h2>
+  <p class="section-sub">Don't take our word for it — hear from the swimmers whose lives Coach Sanjay has touched.</p>
+
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-quote-mark">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">I was 34 and terrified of deep water. After just 6 weeks with Coach Sanjay, I swam a full length of the pool on my own. His patience and encouragement are truly one of a kind. I cannot recommend him enough!</p>
+      <div class="testi-author">
+        <div class="testi-avatar">R</div>
+        <div>
+          <div class="testi-name">Riya Mehta</div>
+          <div class="testi-role">Adult Learner, Age 34</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal">
+      <div class="testi-quote-mark">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">My 14-year-old son went from barely kicking to competing at the district level in under a year. Coach Sanjay sees the potential in every kid and pushes them at exactly the right pace. Genuinely transformative.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">A</div>
+        <div>
+          <div class="testi-name">Amit Patel</div>
+          <div class="testi-role">Parent of Teen Swimmer</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal">
+      <div class="testi-quote-mark">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">I joined after knee surgery on my doctor's advice, and Sanjay sir tailored every session around my recovery. The water exercises helped immensely. He's caring, knowledgeable, and incredibly motivating.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">S</div>
+        <div>
+          <div class="testi-name">Sunita Desai</div>
+          <div class="testi-role">Rehabilitation Program, Age 52</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal">
+      <div class="testi-quote-mark">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">At 62, I thought swimming was behind me. Coach Sanjay proved me completely wrong. The senior batch is gentle, joyful, and the best part of my week. My back pain has reduced dramatically. Highly recommended!</p>
+      <div class="testi-author">
+        <div class="testi-avatar">V</div>
+        <div>
+          <div class="testi-name">Vijay Sharma</div>
+          <div class="testi-role">Senior Batch Member, Age 62</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal">
+      <div class="testi-quote-mark">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">Best investment I've made for my fitness. Sanjay sir teaches butterfly in a way that actually makes sense. His explanations in Hindi made everything so much clearer. I look forward to every single session.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">P</div>
+        <div>
+          <div class="testi-name">Priya Joshi</div>
+          <div class="testi-role">Competitive Swimmer, Age 22</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal">
+      <div class="testi-quote-mark">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">The morning batch at 6 AM has become my daily ritual. Coach Sanjay's energy at that hour is unbelievable — he makes you feel like you can conquer anything. My endurance and confidence have skyrocketed.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">K</div>
+        <div>
+          <div class="testi-name">Karan Trivedi</div>
+          <div class="testi-role">Fitness Swimmer, Age 29</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-sep" style="background:#ffffff;">
+  <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,40 C240,0 480,60 720,30 C960,0 1200,60 1440,20 L1440,60 L0,60 Z" fill="#050e1d"/>
+  </svg>
+</div>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2 class="section-title">Ready to Make a Splash?</h2>
+  <p class="section-sub">Your first session is just one call away. Reach out and let's talk about your swimming goals — no pressure, just passion.</p>
+
+  <div class="contact-cards">
+    <a class="contact-card" href="tel:+919896424193">
+      <div class="contact-card-icon">📞</div>
+      <div class="contact-card-label">Call</div>
+      <div class="contact-card-value">+91 9896424193</div>
+    </a>
+    <a class="contact-card" href="https://wa.me/919896424193" target="_blank" rel="noopener">
+      <div class="contact-card-icon">💬</div>
+      <div class="contact-card-label">WhatsApp</div>
+      <div class="contact-card-value">Chat on WhatsApp</div>
+    </a>
+    <a class="contact-card" href="mailto:sanjuinsan9845@gmail.com">
+      <div class="contact-card-icon">✉️</div>
+      <div class="contact-card-label">Email</div>
+      <div class="contact-card-value">sanjuinsan9845@gmail.com</div>
+    </a>
+    <a class="contact-card" href="https://maps.google.com/?q=Baroda+Swimfront+Vadodara" target="_blank" rel="noopener">
+      <div class="contact-card-icon">📍</div>
+      <div class="contact-card-label">Location</div>
+      <div class="contact-card-value">Baroda Swimfront, Vadodara ↗</div>
+    </a>
+  </div>
+
+
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">🌊 <span>Sanjay</span> Kumar</div>
+      <p class="footer-tagline">Head Swimming Coach at Baroda Swimfront. Teaching confidence, discipline, and water safety — one swimmer at a time.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#specialities">Specialities</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#training">Batches</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <p><a href="tel:+919896424193" style="color:inherit;text-decoration:none;">📞 +91 9896424193</a></p>
+      <p><a href="https://wa.me/919896424193" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">💬 WhatsApp</a></p>
+      <p><a href="mailto:sanjuinsan9845@gmail.com" style="color:inherit;text-decoration:none;">✉️ sanjuinsan9845@gmail.com</a></p>
+      <p><a href="https://maps.google.com/?q=Baroda+Swimfront+Vadodara" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">📍 Baroda Swimfront, Vadodara ↗</a></p>
+      <p>🕐 Mon–Sun · 6 AM – 8 PM</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 Sanjay Kumar · Head Coach, Baroda Swimfront · All Rights Reserved
+  </div>
+</footer>
+
+<script>
+  /* ── Hamburger ── */
+  var btn  = document.getElementById('hamburger');
+  var menu = document.getElementById('mobileNav');
+
+  function openMenu()  { menu.classList.add('is-open');    btn.classList.add('is-open');    btn.setAttribute('aria-expanded','true'); }
+  function closeMenu() { menu.classList.remove('is-open'); btn.classList.remove('is-open'); btn.setAttribute('aria-expanded','false'); }
+  function toggleMenu(){ menu.classList.contains('is-open') ? closeMenu() : openMenu(); }
+
+  btn.addEventListener('click', function(e){ e.stopPropagation(); toggleMenu(); });
+
+  /* Close when a mobile link is tapped */
+  var links = menu.querySelectorAll('.nav-close-link');
+  links.forEach(function(link){
+    link.addEventListener('click', closeMenu);
+  });
+
+  /* Close when clicking outside */
+  document.addEventListener('click', function(e){
+    if (!btn.contains(e.target) && !menu.contains(e.target)) closeMenu();
+  });
+  // ─── BUBBLES ───
+  const bubbleContainer = document.getElementById('bubbles');
+  for (let i = 0; i < 18; i++) {
+    const b = document.createElement('div');
+    b.className = 'bubble';
+    const size = Math.random() * 18 + 6;
+    b.style.cssText = `
+      width: ${size}px; height: ${size}px;
+      left: ${Math.random() * 100}%;
+      bottom: -${size}px;
+      animation-duration: ${Math.random() * 12 + 8}s;
+      animation-delay: ${Math.random() * 8}s;
+    `;
+    bubbleContainer.appendChild(b);
+  }
+
+  // ─── SCROLL REVEAL ───
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transitionDelay = `${(i % 3) * 0.1}s`;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // ─── NAV ACTIVE STATE ───
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--sky)' : '';
+    });
+  });
+</script>
+</body>
+</html>
