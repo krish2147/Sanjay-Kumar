@@ -1,7 +1,7 @@
 {
   "name": "Coach Sanjay Kumar · Swimming Vadodara",
   "short_name": "Coach Sanjay",
-  "description": "Sanjay Kumar, Head Coach at Baroda Swim Front, Vadodara. Personal swimming training at the pool or at your own pool, kids and adult classes, competitive coaching. Book on WhatsApp in one tap.",
+  "description": "Sanjay Kumar, personal swimming coach in Vadodara. One-on-one training at your place or at the pool, kids and adult classes, competitive coaching. Book on WhatsApp in one tap.",
   "id": "./",
   "start_url": "./?source=app",
   "scope": "./",
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "name": "Batch timings",
+      "name": "Session timings",
       "url": "./?source=app#batches",
       "icons": [
         {
@@ -87,7 +87,7 @@
       "sizes": "780x1688",
       "type": "image/jpeg",
       "form_factor": "narrow",
-      "label": "Morning and evening batches"
+      "label": "Morning and evening session timings"
     },
     {
       "src": "assets/screens/desktop-home.jpg",
