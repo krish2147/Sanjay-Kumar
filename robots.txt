@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://krish2147.github.io/Sanjay-Kumar/sitemap.xml
