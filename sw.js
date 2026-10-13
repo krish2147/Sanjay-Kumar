@@ -1,6 +1,6 @@
 // Coach Sanjay app shell. Pages: network first, cached copy when offline.
 // Images, fonts, icons: cache first. Videos are never cached (too big).
-const VERSION = 'coach-sanjay-v1';
+const VERSION = 'coach-sanjay-v2';
 const SHELL = [
   './',
   './index.html',
@@ -8,13 +8,11 @@ const SHELL = [
   './assets/icons/icon-192.png',
   './assets/icons/icon-512.png',
   './assets/sanjay-kumar-swimming-coach-vadodara.jpg',
-  './assets/hero-poster.jpg',
-  './assets/hero-ending.jpg',
+  './assets/sanjay-on-deck.jpg',
   './assets/race-dive.jpg',
   './assets/stroke-closeup.jpg',
   './assets/lanes-overhead.jpg',
-  './assets/pool-aerial.jpg',
-  './assets/highlights-poster.jpg'
+  './assets/pool-aerial.jpg'
 ];
 
 self.addEventListener('install', e => {
