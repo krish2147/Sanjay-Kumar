@@ -71,7 +71,7 @@
       "areaServed": {"@type": "City", "name": "Vadodara"},
       "openingHoursSpecification": [{
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
         "opens": "06:00", "closes": "20:00"
       }],
       "hasOfferCatalog": {
@@ -389,18 +389,50 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
 @media (max-width:900px){.steps{grid-template-columns:1fr}}
 
 /* ---------- batches as a pace clock ---------- */
-.batches .grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
-.clockface{position:relative;aspect-ratio:1;max-width:520px;width:100%;margin:0 auto}
-.clockface svg{width:100%;height:100%}
-.clockface .hand{transform-origin:200px 200px;animation:sweep 60s linear infinite;animation-delay:-17s}
-@keyframes sweep{to{transform:rotate(360deg)}}
-.slots{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
-.slots li{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line)}
-.slots time,.slots .t{font:900 34px/1 var(--display);font-variant-numeric:tabular-nums}
-.slots b{display:block;font-size:18px}
-.slots span{color:var(--text-secondary);font-size:15px}
-.batches h2{font-size:clamp(44px,5.4vw,84px);text-transform:uppercase;margin:16px 0 22px}
-@media (max-width:900px){.batches .grid{grid-template-columns:1fr}.clockface{max-width:340px}.slots li{grid-template-columns:120px 1fr}}
+.tl-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px}
+.nowchip{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;font-weight:600;font-size:15px}
+.nowchip i{width:10px;height:10px;border-radius:50%;background:var(--water);box-shadow:0 0 0 0 rgba(63,208,212,.6);animation:nowpulse 2.4s ease-out infinite}
+.nowchip.home i{background:var(--accent);animation-name:nowpulseO}
+.nowchip.off i{background:var(--text-secondary);animation:none}
+@keyframes nowpulse{0%{box-shadow:0 0 0 0 rgba(63,208,212,.55)}80%,100%{box-shadow:0 0 0 12px rgba(63,208,212,0)}}
+@keyframes nowpulseO{0%{box-shadow:0 0 0 0 rgba(255,107,44,.55)}80%,100%{box-shadow:0 0 0 12px rgba(255,107,44,0)}}
+.tl{padding:30px clamp(18px,3vw,36px) 18px;border-radius:28px;background:var(--canvas-2);border:1px solid var(--line)}
+.tl-row{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:center;margin-bottom:16px}
+.tl-day{font:900 24px/1 var(--display);text-transform:uppercase}
+.tl-bar{position:relative;height:58px;border-radius:16px;background:rgba(3,18,26,.6);overflow:hidden}
+.seg{position:absolute;top:0;bottom:0;left:calc(var(--l)*1%);width:calc(var(--w)*1%);display:flex;align-items:center;justify-content:center;font:600 14px/1.2 var(--body);text-align:center;padding:0 6px;transform-origin:left;transform:scaleX(0);transition:transform 1.1s var(--ease-out)}
+.seg+.seg{border-left:2px solid var(--canvas-2)}
+.seg.s-pool{background:linear-gradient(180deg,rgba(63,208,212,.42),rgba(63,208,212,.22));color:#e9fbfb}
+.seg.s-home{background:linear-gradient(180deg,rgba(255,107,44,.5),rgba(255,107,44,.28));color:#fff3ec}
+.seg b{font-weight:700}
+.seg .sm{display:none}
+.tl.in-view .seg{transform:none}
+.tl.in-view .tl-row .seg:nth-child(2){transition-delay:.15s}
+.tl.in-view .tl-row .seg:nth-child(3){transition-delay:.3s}
+.tl.in-view .tl-row[data-row=sun] .seg{transition-delay:.45s}
+.now{position:absolute;top:-4px;bottom:-4px;left:calc(var(--x,0)*1%);width:3px;margin-left:-1.5px;background:#fff;border-radius:3px;box-shadow:0 0 12px rgba(255,255,255,.8);display:none;z-index:2}
+.now.on{display:block}
+.tl-axis{position:relative;height:24px;margin-left:128px;margin-top:4px}
+.tl-axis span{position:absolute;left:calc(var(--x)*1%);transform:translateX(-50%);font:500 11px/1 var(--mono);letter-spacing:.06em;color:var(--text-secondary);white-space:nowrap}
+.tl-axis span:first-child{transform:none}
+.tl-axis span:last-child{transform:translateX(-100%)}
+.slotcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+.slot{position:relative;padding:24px;border-radius:24px;background:var(--canvas-2);border:1px solid var(--line)}
+.slot .dot{position:absolute;right:22px;top:24px;width:12px;height:12px;border-radius:50%}
+.dot.s-pool{background:var(--water)}
+.dot.s-home{background:var(--accent)}
+.slot b{display:block;margin:14px 0 10px;font:900 clamp(34px,3.2vw,46px)/.95 var(--display);text-transform:uppercase}
+.slot p{color:var(--text-secondary);font-size:15px}
+.batches h2{font-size:clamp(44px,5.4vw,84px);text-transform:uppercase;margin:16px 0 18px}
+@media (max-width:900px){
+  .slotcards{grid-template-columns:1fr}
+  .tl-row{grid-template-columns:1fr;gap:8px}
+  .tl-axis{margin-left:0}
+  .tl-day{font-size:20px}
+  .seg .lg{display:none}.seg .sm{display:inline}
+  .seg{font-size:12.5px}
+  .tl-axis span:not(.k){display:none}
+}
 
 /* ---------- reviews ---------- */
 .reviews{overflow:hidden}
@@ -575,7 +607,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <a class="btn btn-primary" href="#contact">Book your first session</a>
         <a class="btn btn-ghost" href="#services">See all services</a>
       </div>
-      <div class="meta h-in" style="--d:.96s"><span>Mon to Sun · 6 AM to 8 PM</span><span>At your place or the pool</span></div>
+      <div class="meta h-in" style="--d:.96s"><span>Mon to Sat · 6 AM to 8 PM</span><span>Sundays at your place</span></div>
     </div>
     <figure class="hero-photo">
       <div class="par" id="heroPar">
@@ -650,7 +682,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       <div class="swimmer" aria-hidden="true"><i></i></div>
       <div class="num" aria-hidden="true">01</div>
       <div><span class="badge">I come to you</span><h3>Personal training at your place</h3><div class="for">Home · society · farmhouse · club pools</div></div>
-      <p>Have a pool at home, in your apartment society, at a farmhouse or club? I come to you with a full lesson plan. Your timings, your privacy, and the whole family can share the session.</p>
+      <p>Have a pool at home, in your apartment society, at a farmhouse or club? I come to you with a full lesson plan. Mon to Sat, 10 AM to 4 PM, and Sundays. Your privacy, and the whole family can share the session.</p>
       <a class="ask" href="https://wa.me/919896424193?text=Hi%20Sanjay%20sir%2C%20I%27d%20like%20personal%20swimming%20training%20at%20my%20place." target="_blank" rel="noopener">Ask about this →</a>
     </article>
     <svg class="lanerope" viewBox="0 0 1200 16" preserveAspectRatio="none" aria-hidden="true"><path class="draw" d="M0 8H1200" stroke="#ff6b2c" stroke-width="6" stroke-dasharray="10 8" pathLength="1200" style="stroke-dashoffset:calc(var(--draw,1)*1200)"/></svg>
@@ -658,7 +690,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       <div class="swimmer" aria-hidden="true"><i></i></div>
       <div class="num" aria-hidden="true">02</div>
       <div><h3>One-on-one at the pool</h3><div class="for">No pool at home? No problem</div></div>
-      <p>We train one-on-one at a pool in Vadodara that is easy for you to reach. Just you and me in the lane, with full attention on your stroke, breathing and pace.</p>
+      <p>We train one-on-one at a pool in Vadodara that is easy for you to reach. Mon to Sat, 6–10 AM or 4–8 PM. Just you and me in the lane, with full attention on your stroke, breathing and pace.</p>
       <a class="ask" href="https://wa.me/919896424193?text=Hi%20Sanjay%20sir%2C%20I%27d%20like%20one-on-one%20training%20at%20the%20pool." target="_blank" rel="noopener">Ask about this →</a>
     </article>
     <svg class="lanerope" viewBox="0 0 1200 16" preserveAspectRatio="none" aria-hidden="true"><path class="draw" d="M0 8H1200" stroke="#eaf7f6" stroke-opacity=".5" stroke-width="6" stroke-dasharray="10 8" pathLength="1200" style="stroke-dashoffset:calc(var(--draw,1)*1200)"/></svg>
@@ -799,28 +831,38 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
 <!-- ============ BATCHES ============ -->
 <section class="sec batches reveal" id="batches" aria-labelledby="batches-h">
-  <div class="grid">
-    <div class="clockface rv" aria-hidden="true">
-      <svg viewBox="0 0 400 400">
-        <circle cx="200" cy="200" r="186" fill="#082a39" stroke="rgba(159,195,198,.25)" stroke-width="2"/>
-        <g stroke="#a6c7ca" stroke-linecap="round" id="ticks"></g>
-        <path d="M200 200 L200 34 A166 166 0 0 1 287 59 Z" fill="rgba(63,208,212,.16)"/>
-        <path d="M200 200 L200 366 A166 166 0 0 1 113 341 Z" fill="rgba(255,107,44,.16)"/>
-        <text x="200" y="120" text-anchor="middle" fill="#eaf7f6" font-family="Big Shoulders Display,Impact,sans-serif" font-weight="900" font-size="54">6–8</text>
-        <text x="200" y="146" text-anchor="middle" fill="#3fd0d4" font-family="JetBrains Mono,monospace" font-size="13" letter-spacing="3">MORNING</text>
-        <text x="200" y="284" text-anchor="middle" fill="#eaf7f6" font-family="Big Shoulders Display,Impact,sans-serif" font-weight="900" font-size="54">5–7</text>
-        <text x="200" y="310" text-anchor="middle" fill="#ff6b2c" font-family="JetBrains Mono,monospace" font-size="13" letter-spacing="3">EVENING</text>
-        <g class="hand"><line x1="200" y1="200" x2="200" y2="40" stroke="#ff6b2c" stroke-width="4" stroke-linecap="round"/><circle cx="200" cy="200" r="9" fill="#ff6b2c"/></g>
-      </svg>
+  <div class="wrap">
+    <div class="tl-head">
+      <div>
+        <span class="kicker rv">Session timings</span>
+        <h2 class="rv" id="batches-h">Pick a time. <span class="aq">Show up.</span> Swim.</h2>
+        <p class="lede rv">Mornings and evenings I'm at the pool. In between, and on Sundays, I come to you.</p>
+      </div>
+      <div class="nowchip chip rv" id="nowChip" hidden><i aria-hidden="true"></i><span id="nowText"></span></div>
     </div>
-    <div>
-      <span class="kicker rv">Session timings</span>
-      <h2 class="rv" id="batches-h">Pick a time. <span class="aq">Show up.</span> Swim.</h2>
-      <ul class="slots rv">
-        <li><time datetime="06:00">6–8 AM</time><div><b>Morning sessions</b><span>Calm water, fresh start. Before school or office.</span></div></li>
-        <li><time datetime="17:00">5–7 PM</time><div><b>Evening sessions</b><span>After school for kids, after work for adults.</span></div></li>
-        <li><span class="t">Your time</span><div><b>At your place</b><span>Home or society pool sessions planned around your day.</span></div></li>
-      </ul>
+    <div class="tl rv" role="img" aria-label="Monday to Saturday: at the pool 6 to 10 AM, at your place 10 AM to 4 PM, at the pool 4 to 8 PM. Sunday: at your place by appointment.">
+      <div class="tl-row" data-row="week">
+        <div class="tl-day">Mon – Sat</div>
+        <div class="tl-bar">
+          <span class="seg s-pool" style="--l:0;--w:28.571"><b class="lg">At the pool</b><b class="sm">Pool</b></span>
+          <span class="seg s-home" style="--l:28.571;--w:42.857"><b class="lg">At your place</b><b class="sm">Your place</b></span>
+          <span class="seg s-pool" style="--l:71.429;--w:28.571"><b class="lg">At the pool</b><b class="sm">Pool</b></span>
+          <i class="now" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="tl-row" data-row="sun">
+        <div class="tl-day">Sunday</div>
+        <div class="tl-bar">
+          <span class="seg s-home" style="--l:0;--w:100"><b class="lg">At your place · by appointment</b><b class="sm">Your place · by appointment</b></span>
+          <i class="now" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="tl-axis" aria-hidden="true"><span class="k" style="--x:0">6 AM</span><span style="--x:14.286">8</span><span class="k" style="--x:28.571">10</span><span style="--x:42.857">12 PM</span><span style="--x:57.143">2</span><span class="k" style="--x:71.429">4</span><span style="--x:85.714">6</span><span class="k" style="--x:100">8 PM</span></div>
+    </div>
+    <div class="slotcards">
+      <div class="slot rv"><span class="dot s-pool" aria-hidden="true"></span><span class="kicker">Mon to Sat · at the pool</span><b>6–10 AM<br>4–8 PM</b><p>One-on-one at the pool. Mornings before school or office, evenings after.</p></div>
+      <div class="slot rv"><span class="dot s-home" aria-hidden="true"></span><span class="kicker">Mon to Sat · at your place</span><b>10 AM–4 PM</b><p>I come to your home, society or farmhouse pool in my free hours.</p></div>
+      <div class="slot rv"><span class="dot s-home" aria-hidden="true"></span><span class="kicker">Sunday · at your place</span><b>By appointment</b><p>Weekend sessions at your pool. Message me to fix a time.</p></div>
     </div>
   </div>
 </section>
@@ -918,7 +960,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <div class="row2 rv">
           <div class="field"><label for="f-age">Swimmer's age</label><input id="f-age" name="age" inputmode="numeric" placeholder="e.g. 8"></div>
           <div class="field"><label for="f-time">Best time</label>
-            <select id="f-time" name="time"><option>Morning</option><option>Evening</option><option>Flexible</option></select></div>
+            <select id="f-time" name="time"><option>Morning, 6–10 AM (at the pool)</option><option>Evening, 4–8 PM (at the pool)</option><option>Daytime, 10 AM–4 PM (at my place)</option><option>Sunday (at my place)</option><option>Flexible</option></select></div>
         </div>
         <div class="field rv"><label for="f-msg">Anything I should know?</label><textarea id="f-msg" name="msg" placeholder="Area in Vadodara, swimming level, goals"></textarea></div>
         <button class="btn btn-primary rv" type="submit">Send on WhatsApp</button>
@@ -958,7 +1000,8 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
         <li><a href="https://wa.me/919896424193" target="_blank" rel="noopener">WhatsApp</a></li>
         <li><a href="mailto:sanjuinsan9845@gmail.com">sanjuinsan9845@gmail.com</a></li>
         <li>Personal training across Vadodara</li>
-        <li>Mon to Sun · 6 AM to 8 PM</li>
+        <li>At the pool: Mon to Sat, 6–10 AM &amp; 4–8 PM</li>
+        <li>At your place: Mon to Sat, 10 AM–4 PM, and Sundays</li>
       </ul>
     </div>
   </div>
@@ -1084,16 +1127,31 @@ const live = new IntersectionObserver(es => es.forEach(e => e.target.classList.t
 $$('.hero, .ticker, .batches, .coach, .pool').forEach(el => live.observe(el));
 document.addEventListener('visibilitychange', () => document.body.classList.toggle('paused', document.hidden));
 
-// clock ticks
-const ticks = $('#ticks');
-for (let i = 0; i < 60; i++) {
-  const a = i / 60 * Math.PI * 2, r1 = i % 5 ? 172 : 164, r2 = 178;
-  const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-  l.setAttribute('x1', 200 + Math.sin(a) * r1); l.setAttribute('y1', 200 - Math.cos(a) * r1);
-  l.setAttribute('x2', 200 + Math.sin(a) * r2); l.setAttribute('y2', 200 - Math.cos(a) * r2);
-  l.setAttribute('stroke-width', i % 5 ? 1 : 2.5); l.setAttribute('opacity', i % 5 ? .35 : .8);
-  ticks.appendChild(l);
+// timeline: draw bars when seen, and mark "now" in Vadodara time
+const tl = $('.tl');
+new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { tl.classList.add('in-view'); o.disconnect(); } }), { threshold: 0.35 }).observe(tl);
+const nowChip = $('#nowChip'), nowText = $('#nowText');
+function updateNow() {
+  const parts = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' }).formatToParts(new Date());
+  const get = t => parts.find(p => p.type === t).value;
+  const day = get('weekday'), h = +get('hour') + +get('minute') / 60, sun = day === 'Sun';
+  $$('.tl .now').forEach(n => n.classList.remove('on'));
+  let txt, cls = '';
+  if (h >= 6 && h < 20) {
+    const mark = $(`.tl-row[data-row=${sun ? 'sun' : 'week'}] .now`);
+    mark.style.setProperty('--x', ((h - 6) / 14 * 100).toFixed(2));
+    mark.classList.add('on');
+  }
+  if (sun) { txt = 'Sunday: home sessions by appointment'; cls = 'home'; }
+  else if ((h >= 6 && h < 10) || (h >= 16 && h < 20)) { txt = 'Right now: at the pool'; }
+  else if (h >= 10 && h < 16) { txt = 'Right now: free for sessions at your place'; cls = 'home'; }
+  else { txt = 'Off for now. WhatsApp to book'; cls = 'off'; }
+  nowText.textContent = txt;
+  nowChip.className = 'nowchip chip rv ' + cls;
+  nowChip.hidden = false;
 }
+updateNow();
+setInterval(updateNow, 60000);
 
 /* ---------- reduced motion, live in both directions ---------- */
 function pinToFinalStates() {
@@ -1101,6 +1159,7 @@ function pinToFinalStates() {
   draws.forEach(el => { el._d = 0; el.style.setProperty('--draw', 0); });
   counters.forEach(el => { el._done = true; countIO.unobserve(el); el.textContent = fmt(+el.dataset.count); });
   $$('.reveal, .pool').forEach(el => el.classList.add('in', 'done'));
+  tl.classList.add('in-view');
 }
 function unpinFinalStates() {
   if (!pinned) return;
