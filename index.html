@@ -412,15 +412,30 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
 
 /* ---------- reviews ---------- */
 .reviews{overflow:hidden}
-.rtrack{display:flex;gap:20px;width:max-content;animation:tick 80s linear infinite;animation-delay:-20s;padding:4px 0}
-.reviews:hover .rtrack,.rtrack:focus-within{animation-play-state:paused}
-.rcard{width:min(420px,82vw);flex:none;padding:30px;border-radius:24px;background:var(--canvas-2);border:1px solid var(--line)}
-.rcard .stars{color:var(--accent);letter-spacing:.2em;font-size:15px}
-.rcard blockquote{margin:16px 0 22px;font-size:17px;line-height:1.6}
-.rcard cite{font-style:normal;display:flex;align-items:center;gap:12px}
-.rcard cite i{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--panel-2);font:900 18px/1 var(--display);font-style:normal;color:var(--water)}
-.rcard cite b{display:block;font-size:15px}
-.rcard cite span{font:500 11px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary)}
+.rhead{max-width:1280px;margin:0 auto 46px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:28px}
+.rhead h2{font-size:clamp(46px,6.2vw,96px);text-transform:uppercase;margin:16px 0 20px}
+.gbadge{display:inline-flex;align-items:center;gap:16px;padding:18px 22px;border-radius:22px;background:var(--canvas-2);border:1px solid var(--line-strong);text-decoration:none;transition:border-color .3s,transform .35s var(--ease-out)}
+.gbadge:hover{border-color:var(--water);transform:translateY(-2px)}
+.gbadge .g{width:34px;height:34px}
+.gbadge .score{font:900 58px/1 var(--display)}
+.gside{display:grid;gap:6px}
+.gstars{position:relative;display:inline-block;font-size:20px;letter-spacing:.12em;color:rgba(234,247,246,.18);line-height:1}
+.gstars .on{position:absolute;left:0;top:0;overflow:hidden;white-space:nowrap;color:#fbbc05}
+.gcount{font:500 11px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary)}
+.rgrid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.rcard{margin:0;padding:26px;border-radius:24px;background:var(--canvas-2);border:1px solid var(--line);display:flex;flex-direction:column;transition:border-color .4s,transform .5s var(--ease-out)}
+.rcard:hover{border-color:var(--line-strong);transform:translateY(-4px)}
+.rtop{display:flex;align-items:center;gap:10px;font:500 11px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary)}
+.rtop .g{width:20px;height:20px;flex:none}
+.rcard blockquote{margin:16px 0 24px;font-size:16.5px;line-height:1.6;flex:1}
+.rcard figcaption{display:flex;align-items:center;gap:12px}
+.rcard figcaption i{width:40px;height:40px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--panel-2);font:900 18px/1 var(--display);font-style:normal;color:var(--water)}
+.rcard figcaption b{display:block;font-size:15px}
+.rcard figcaption span span{font:500 11px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary)}
+.rlinks{max-width:1280px;margin:30px auto 0;display:flex;flex-wrap:wrap;gap:12px}
+.reveal.in .rv:nth-child(5){transition-delay:.4s}
+@media (max-width:1100px){.rgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.rgrid{grid-template-columns:1fr}.gbadge .score{font-size:48px}}
 
 /* ---------- faq ---------- */
 .faq .grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(30px,5vw,80px)}
@@ -523,9 +538,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important;transition-delay:0s!important}
   .reveal .rv,.pool .lane{opacity:1;transform:none}
-  .ticker .row,.rtrack{transform:none}
-  .rtrack{flex-wrap:wrap;width:auto;justify-content:center}
-  .rtrack .dup{display:none}
+  .ticker .row{transform:none}
   .wa-float{transform:none}
   .hp-frame img{transform:none}
 }
@@ -827,17 +840,46 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
 <!-- ============ REVIEWS ============ -->
 <section class="sec reviews" id="reviews" aria-labelledby="reviews-h">
-  <div class="sec-head reveal">
-    <span class="kicker rv">What swimmers say</span>
-    <h2 class="rv" id="reviews-h">Real people. <span class="aq">Real laps.</span></h2>
+  <div class="rhead reveal">
+    <div>
+      <span class="kicker rv">Real Google reviews</span>
+      <h2 class="rv" id="reviews-h">Real people. <span class="aq">Real laps.</span></h2>
+      <p class="lede rv">What swimmers say about the coaches at Baroda Swim Front, in their own words on Google.</p>
+    </div>
+    <a class="gbadge rv" href="https://www.google.com/maps/search/?api=1&amp;query=Baroda+swim+front+Vadodara&amp;query_place_id=ChIJVwyWGwDJXzkRTpV57b-3Qus" target="_blank" rel="noopener" aria-label="Rated 4.8 out of 5 from 243 Google reviews. Read all reviews on Google">
+      <svg class="g" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h6a5.1 5.1 0 0 1-2.2 3.4v2.8h3.6c2.1-2 3.2-4.8 3.2-8.2Z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.4-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M5.7 14a6.6 6.6 0 0 1 0-4.2V7H2a11 11 0 0 0 0 9.9L5.7 14Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.3 1.7l3.2-3.2A11 11 0 0 0 2 7l3.7 2.9C6.6 7.3 9.1 5.4 12 5.4Z"/></svg>
+      <span class="score">4.8</span>
+      <span class="gside">
+        <span class="gstars" aria-hidden="true"><span class="on" style="width:96%">★★★★★</span>★★★★★</span>
+        <span class="gcount">243 reviews on Google</span>
+      </span>
+    </a>
   </div>
-  <div class="rtrack" id="rtrack">
-    <figure class="rcard"><div class="stars" aria-label="5 out of 5">★★★★★</div><blockquote>I was 34 and terrified of deep water. After six weeks with Coach Sanjay, I swam a full length of the pool on my own. His patience is one of a kind.</blockquote><cite><i aria-hidden="true">R</i><span><b>Riya Mehta</b><span>Adult learner, 34</span></span></cite></figure>
-    <figure class="rcard"><div class="stars" aria-label="5 out of 5">★★★★★</div><blockquote>My 14-year-old went from barely kicking to competing at district level in under a year. Sanjay sir pushes kids at exactly the right pace.</blockquote><cite><i aria-hidden="true">A</i><span><b>Amit Patel</b><span>Parent of a teen swimmer</span></span></cite></figure>
-    <figure class="rcard"><div class="stars" aria-label="5 out of 5">★★★★★</div><blockquote>I joined after knee surgery on my doctor's advice. Sanjay sir planned every session around my recovery. Caring, knowledgeable and very motivating.</blockquote><cite><i aria-hidden="true">S</i><span><b>Sunita Desai</b><span>Rehab program, 52</span></span></cite></figure>
-    <figure class="rcard"><div class="stars" aria-label="5 out of 5">★★★★★</div><blockquote>At 62 I thought swimming was behind me. The senior batch is gentle, joyful, and the best part of my week. My back pain has gone down a lot.</blockquote><cite><i aria-hidden="true">V</i><span><b>Vijay Sharma</b><span>Senior batch, 62</span></span></cite></figure>
-    <figure class="rcard"><div class="stars" aria-label="5 out of 5">★★★★★</div><blockquote>Sanjay sir teaches butterfly in a way that finally makes sense. His explanations in Hindi made everything clearer.</blockquote><cite><i aria-hidden="true">P</i><span><b>Priya Joshi</b><span>Competitive swimmer, 22</span></span></cite></figure>
-    <figure class="rcard"><div class="stars" aria-label="5 out of 5">★★★★★</div><blockquote>The 6 AM batch is my daily ritual now. His energy at that hour is unreal. My endurance and confidence have shot up.</blockquote><cite><i aria-hidden="true">K</i><span><b>Karan Trivedi</b><span>Fitness swimmer, 29</span></span></cite></figure>
+  <div class="rgrid reveal">
+    <figure class="rcard rv">
+      <div class="rtop"><svg class="g" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h6a5.1 5.1 0 0 1-2.2 3.4v2.8h3.6c2.1-2 3.2-4.8 3.2-8.2Z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.4-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M5.7 14a6.6 6.6 0 0 1 0-4.2V7H2a11 11 0 0 0 0 9.9L5.7 14Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.3 1.7l3.2-3.2A11 11 0 0 0 2 7l3.7 2.9C6.6 7.3 9.1 5.4 12 5.4Z"/></svg><span>Google review · 3 months ago</span></div>
+      <blockquote>&ldquo;I&rsquo;ve been learning swimming at Baroda Swim Front, and my experience has been excellent. The coaches are supportive, patient, and encouraging, making it a great place for beginners as well as regular swimmers.&rdquo;</blockquote>
+      <figcaption><i aria-hidden="true">D</i><span><b>Deep Chavadiya</b><span>Local Guide · 56 reviews</span></span></figcaption>
+    </figure>
+    <figure class="rcard rv">
+      <div class="rtop"><svg class="g" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h6a5.1 5.1 0 0 1-2.2 3.4v2.8h3.6c2.1-2 3.2-4.8 3.2-8.2Z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.4-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M5.7 14a6.6 6.6 0 0 1 0-4.2V7H2a11 11 0 0 0 0 9.9L5.7 14Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.3 1.7l3.2-3.2A11 11 0 0 0 2 7l3.7 2.9C6.6 7.3 9.1 5.4 12 5.4Z"/></svg><span>Google review · 4 months ago</span></div>
+      <blockquote>&ldquo;Had a great experience with this swimming class. The coaches are patient, supportive, and explain techniques really well. The environment is clean and well-maintained, making it comfortable to learn. Highly recommended for both beginners and regular swimmers.&rdquo;</blockquote>
+      <figcaption><i aria-hidden="true">A</i><span><b>Akshika Panicker</b><span>3 reviews on Google</span></span></figcaption>
+    </figure>
+    <figure class="rcard rv">
+      <div class="rtop"><svg class="g" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h6a5.1 5.1 0 0 1-2.2 3.4v2.8h3.6c2.1-2 3.2-4.8 3.2-8.2Z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.4-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M5.7 14a6.6 6.6 0 0 1 0-4.2V7H2a11 11 0 0 0 0 9.9L5.7 14Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.3 1.7l3.2-3.2A11 11 0 0 0 2 7l3.7 2.9C6.6 7.3 9.1 5.4 12 5.4Z"/></svg><span>Google review · 6 months ago</span></div>
+      <blockquote>&ldquo;Had a great experience at Baroda Swim Front! The pool is one of the best—very clean, well-maintained, and perfect for learning as well as practice.&rdquo;</blockquote>
+      <figcaption><i aria-hidden="true">S</i><span><b>Shailesh Prajapati</b><span>6 reviews on Google</span></span></figcaption>
+    </figure>
+    <figure class="rcard rv">
+      <div class="rtop"><svg class="g" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h6a5.1 5.1 0 0 1-2.2 3.4v2.8h3.6c2.1-2 3.2-4.8 3.2-8.2Z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.4-2.7l-3.6-2.8c-1 .7-2.3 1.1-3.8 1.1-2.9 0-5.4-2-6.3-4.6H2v2.9A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M5.7 14a6.6 6.6 0 0 1 0-4.2V7H2a11 11 0 0 0 0 9.9L5.7 14Z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.3 1.7l3.2-3.2A11 11 0 0 0 2 7l3.7 2.9C6.6 7.3 9.1 5.4 12 5.4Z"/></svg><span>Google review</span></div>
+      <blockquote>&ldquo;Really good coaches and very clean space for environment.&rdquo;</blockquote>
+      <figcaption><i aria-hidden="true">G</i><span><b>Google reviewer</b><span>Review highlight</span></span></figcaption>
+    </figure>
+  </div>
+  <div class="rlinks reveal">
+    <a class="btn btn-ghost rv" href="https://www.google.com/maps/search/?api=1&amp;query=Baroda+swim+front+Vadodara&amp;query_place_id=ChIJVwyWGwDJXzkRTpV57b-3Qus" target="_blank" rel="noopener">Read all 243 reviews on Google →</a>
+    <a class="btn btn-ghost rv" href="https://search.google.com/local/writereview?placeid=ChIJVwyWGwDJXzkRTpV57b-3Qus" target="_blank" rel="noopener">Trained with Sanjay sir? Leave a review</a>
   </div>
 </section>
 
@@ -1062,12 +1104,8 @@ $$('.reveal, .pool').forEach(el => io.observe(el));
 
 // pause looping decor when off-screen
 const live = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('offscreen', !e.isIntersecting)));
-$$('.hero, .ticker, .reviews, .batches, .coach, .pool').forEach(el => live.observe(el));
+$$('.hero, .ticker, .batches, .coach, .pool').forEach(el => live.observe(el));
 document.addEventListener('visibilitychange', () => document.body.classList.toggle('paused', document.hidden));
-
-// reviews loop: duplicate the track once so the drift loops cleanly
-const rtrack = $('#rtrack');
-[...rtrack.children].forEach(c => { const d = c.cloneNode(true); d.classList.add('dup'); d.setAttribute('aria-hidden', 'true'); rtrack.appendChild(d); });
 
 // clock ticks
 const ticks = $('#ticks');
