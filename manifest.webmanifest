@@ -1,7 +1,7 @@
 {
   "name": "Coach Sanjay Kumar · Swimming Vadodara",
   "short_name": "Coach Sanjay",
-  "description": "Swimming coach in Vadodara. Book sessions, see batches and services, and message Sanjay sir on WhatsApp.",
+  "description": "Sanjay Kumar, Head Coach at Baroda Swim Front, Vadodara. Personal swimming training at the pool or at your own pool, kids and adult classes, competitive coaching. Book on WhatsApp in one tap.",
   "id": "./",
   "start_url": "./?source=app",
   "scope": "./",
@@ -10,15 +10,91 @@
   "background_color": "#06202c",
   "theme_color": "#06202c",
   "lang": "en-IN",
-  "categories": ["sports", "education", "health"],
+  "categories": [
+    "sports",
+    "education",
+    "health"
+  ],
   "icons": [
-    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "assets/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ],
   "shortcuts": [
-    { "name": "Book a session", "url": "./?source=app#contact", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
-    { "name": "Services", "url": "./?source=app#services", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
-    { "name": "Batch timings", "url": "./?source=app#batches", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] }
+    {
+      "name": "Book a session",
+      "url": "./?source=app#contact",
+      "icons": [
+        {
+          "src": "assets/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Services",
+      "url": "./?source=app#services",
+      "icons": [
+        {
+          "src": "assets/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Batch timings",
+      "url": "./?source=app#batches",
+      "icons": [
+        {
+          "src": "assets/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/screens/phone-home.jpg",
+      "sizes": "780x1688",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Meet Coach Sanjay Kumar"
+    },
+    {
+      "src": "assets/screens/phone-services.jpg",
+      "sizes": "780x1688",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Personal training at your place or at the pool"
+    },
+    {
+      "src": "assets/screens/phone-batches.jpg",
+      "sizes": "780x1688",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "Morning and evening batches"
+    },
+    {
+      "src": "assets/screens/desktop-home.jpg",
+      "sizes": "1920x1080",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Coach Sanjay Kumar, swimming coach in Vadodara"
+    }
   ]
 }

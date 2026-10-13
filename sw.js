@@ -1,6 +1,6 @@
 // Coach Sanjay app shell. Pages: network first, cached copy when offline.
 // Images, fonts, icons: cache first. Videos are never cached (too big).
-const VERSION = 'coach-sanjay-v2';
+const VERSION = 'coach-sanjay-v3';
 const SHELL = [
   './',
   './index.html',

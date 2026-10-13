@@ -1163,9 +1163,13 @@ const store = {
   get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
 };
-function showInstallUI() {
+// Android and desktop Chrome/Edge show Google's own install banner and
+// install dialog. We never block it; our buttons just open that same dialog.
+// iPhone has no install prompt, so only there do we show our own hint.
+function showInstallUI(withHint) {
   if (standalone) return;
   installLi.hidden = false; installCard.hidden = false;
+  if (!withHint) return;
   const dismissed = +store.get('installDismissed') || 0;
   if (Date.now() - dismissed < 14 * 864e5) return;
   if (!matchMedia('(pointer: coarse)').matches) return;
@@ -1184,9 +1188,9 @@ function hideToast() {
 async function doInstall() {
   if (deferredPrompt) {
     deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
+    await deferredPrompt.userChoice;
     deferredPrompt = null;
-    if (outcome === 'accepted') hideInstallUI(); else hideToast();
+    hideInstallUI();   // Chrome offers the prompt again later by itself if it was dismissed
   } else if (isIOS) {
     hideToast();
     if (iosSheet.showModal) iosSheet.showModal(); else iosSheet.setAttribute('open', '');
@@ -1194,9 +1198,9 @@ async function doInstall() {
 }
 installEls.forEach(b => b.addEventListener('click', doInstall));
 $('#installClose').addEventListener('click', () => { store.set('installDismissed', Date.now()); hideToast(); });
-addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; showInstallUI(); });
+addEventListener('beforeinstallprompt', e => { deferredPrompt = e; showInstallUI(false); });
 addEventListener('appinstalled', () => { deferredPrompt = null; hideInstallUI(); });
-if (isIOS && !standalone) showInstallUI();
+if (isIOS && !standalone) showInstallUI(true);
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
   addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 }
