@@ -312,7 +312,7 @@ section{position:relative}
 .creds li{padding:10px 14px;border:1px solid var(--line-strong);border-radius:999px;font-size:14px;font-weight:600;background:rgba(234,247,246,.03)}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:44px;border-top:1px solid var(--line)}
 .stat{padding:22px 16px 0 0}
-.stat b{display:block;font:900 clamp(44px,4.6vw,68px)/1 var(--display);color:var(--text-primary);font-variant-numeric:tabular-nums}
+.stat b{display:block;font:900 clamp(44px,4.6vw,68px)/1 var(--display);color:var(--text-primary);font-variant-numeric:tabular-nums;white-space:nowrap}
 .stat b em{font-style:normal;color:var(--accent)}
 .stat > span{display:block;margin-top:8px;font:500 11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary)}
 @media (max-width:900px){.coach .grid{grid-template-columns:1fr}.portrait{max-width:520px}.stats{grid-template-columns:repeat(2,1fr)}}
@@ -599,8 +599,8 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 
 <div class="ticker" aria-hidden="true">
   <div class="row">
-    <span>National Certificate in Swimming</span><span>Water safety &amp; lifesaving certified</span><span>5+ years coaching</span><span>100+ swimmers trained</span><span>English &amp; Hindi</span><span>Baroda Swim Front, Vasna-Bhayli</span>
-    <span>National Certificate in Swimming</span><span>Water safety &amp; lifesaving certified</span><span>5+ years coaching</span><span>100+ swimmers trained</span><span>English &amp; Hindi</span><span>Baroda Swim Front, Vasna-Bhayli</span>
+    <span>National Certificate in Swimming</span><span>Water safety &amp; lifesaving certified</span><span>5+ years coaching</span><span>1,000+ swimmers taught</span><span>English &amp; Hindi</span><span>Baroda Swim Front, Vasna-Bhayli</span>
+    <span>National Certificate in Swimming</span><span>Water safety &amp; lifesaving certified</span><span>5+ years coaching</span><span>1,000+ swimmers taught</span><span>English &amp; Hindi</span><span>Baroda Swim Front, Vasna-Bhayli</span>
   </div>
 </div>
 
@@ -629,9 +629,9 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       </ul>
       <div class="stats rv">
         <div class="stat"><b><span data-count="5">5</span><em>+</em></b><span>Years coaching</span></div>
-        <div class="stat"><b><span data-count="100">100</span><em>+</em></b><span>Swimmers trained</span></div>
+        <div class="stat"><b><span data-count="1000">1,000</span><em>+</em></b><span>Swimmers taught</span></div>
         <div class="stat"><b><span data-count="4">4</span></b><span>Strokes taught</span></div>
-        <div class="stat"><b><span data-count="3">3</span><em>rd</em></b><span>Inter-school meet</span></div>
+        <div class="stat"><b><span data-count="8">8</span></b><span>Ways to train</span></div>
       </div>
     </div>
   </div>
@@ -1031,25 +1031,32 @@ drawLines();
 
 /* ---------- counters ---------- */
 const counters = $$('[data-count]');
+const fmt = n => n.toLocaleString('en-IN');
 function runCounter(el) {
   if (el._done) return; el._done = true;
-  const to = +el.dataset.count, t0 = performance.now(), dur = 1400;
+  const to = +el.dataset.count, t0 = performance.now(), dur = to >= 100 ? 2200 : 1500;
   const step = now => {
-    if (pinned) { el.textContent = to; return; }
-    const t = clamp((now - t0) / dur, 0, 1), e = 1 - Math.pow(1 - t, 3);
-    const v = Math.round(to * e);
-    if (String(v) !== el.textContent) el.textContent = v;
+    if (pinned) { el.textContent = fmt(to); return; }
+    const t = clamp((now - t0) / dur, 0, 1), e = 1 - Math.pow(1 - t, 4);
+    const txt = fmt(Math.round(to * e));
+    if (txt !== el.textContent) el.textContent = txt;
     if (t < 1) requestAnimationFrame(step);
   };
-  el.textContent = 0; requestAnimationFrame(step);
+  requestAnimationFrame(step);
 }
+// each number starts counting when it is actually on screen, not when its section first peeks in
+const countIO = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  countIO.unobserve(e.target);
+  setTimeout(() => runCounter(e.target), 150);
+}), { threshold: 0.9 });
+if (!RM.matches) counters.forEach(el => { el.textContent = '0'; countIO.observe(el); });
 
 /* ---------- entrances ---------- */
 const io = new IntersectionObserver(es => es.forEach(e => {
   if (!e.isIntersecting) return;
   const t = e.target; t.classList.add('in');
   setTimeout(() => t.classList.add('done'), 1400);
-  $$('[data-count]', t).forEach(runCounter);
   io.unobserve(t);
 }), { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
 $$('.reveal, .pool').forEach(el => io.observe(el));
@@ -1078,7 +1085,7 @@ for (let i = 0; i < 60; i++) {
 function pinToFinalStates() {
   pinned = true;
   draws.forEach(el => { el._d = 0; el.style.setProperty('--draw', 0); });
-  counters.forEach(el => { el._done = true; el.textContent = el.dataset.count; });
+  counters.forEach(el => { el._done = true; countIO.unobserve(el); el.textContent = fmt(+el.dataset.count); });
   $$('.reveal, .pool').forEach(el => el.classList.add('in', 'done'));
 }
 function unpinFinalStates() {
