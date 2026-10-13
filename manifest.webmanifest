@@ -1,0 +1,24 @@
+{
+  "name": "Coach Sanjay Kumar · Swimming Vadodara",
+  "short_name": "Coach Sanjay",
+  "description": "Swimming coach in Vadodara. Book sessions, see batches and services, and message Sanjay sir on WhatsApp.",
+  "id": "./",
+  "start_url": "./?source=app",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#06202c",
+  "theme_color": "#06202c",
+  "lang": "en-IN",
+  "categories": ["sports", "education", "health"],
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Book a session", "url": "./?source=app#contact", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Services", "url": "./?source=app#services", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Batch timings", "url": "./?source=app#batches", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

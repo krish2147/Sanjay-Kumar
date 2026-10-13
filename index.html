@@ -10,6 +10,12 @@
 <meta name="author" content="Sanjay Kumar">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#06202c">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Coach Sanjay">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="geo.region" content="IN-GJ">
 <meta name="geo.placename" content="Vadodara">
 <!-- DEPLOY STEP: if the site moves to its own domain, update canonical, og:url, og:image, the JSON-LD urls, robots.txt and sitemap.xml -->
@@ -461,6 +467,38 @@ footer a:hover{color:var(--text-primary)}
 
 @media (pointer:coarse){.btn,.opt span,.lane .ask{min-height:44px;display:inline-flex;align-items:center;justify-content:center}}
 
+/* ---------- install the app ---------- */
+.install-btn{display:inline-flex;align-items:center;gap:8px;font:600 15px/1 var(--body);color:var(--water);background:none;border:1px solid rgba(63,208,212,.45);border-radius:999px;padding:9px 14px;cursor:pointer;transition:background .3s,border-color .3s,transform .35s var(--ease-out)}
+.install-btn:hover{background:rgba(63,208,212,.12);border-color:var(--water);transform:translateY(-1px)}
+.install-btn svg{width:16px;height:16px}
+.nav ul .install-li{display:flex;align-items:center}
+@media (max-width:980px){.nav.open ul .install-li{padding-top:10px}.nav.open .install-btn{font-size:17px;padding:12px 18px}}
+.appcard{display:grid;grid-template-columns:56px 1fr auto;gap:14px;align-items:center;margin-top:26px;padding:16px;border-radius:20px;background:var(--canvas-2);border:1px solid var(--line);max-width:520px}
+.appcard img{border-radius:14px}
+.appcard b{display:block;color:var(--text-primary);font-size:16px}
+.appcard span{display:block;font-size:14px;color:var(--text-secondary);line-height:1.45}
+@media (max-width:420px){.appcard{grid-template-columns:48px 1fr}.appcard .btn{grid-column:1/-1}}
+.install-toast{position:fixed;left:12px;right:86px;bottom:16px;z-index:45;display:grid;grid-template-columns:44px 1fr auto auto;gap:12px;align-items:center;padding:12px 10px 12px 12px;border-radius:20px;background:rgba(11,50,68,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line-strong);box-shadow:0 20px 60px -20px rgba(0,0,0,.8);transform:translateY(140%);opacity:0;transition:transform .6s var(--ease-out),opacity .6s var(--ease-out)}
+.install-toast.show{transform:none;opacity:1}
+.install-toast img{border-radius:12px}
+.install-toast b{display:block;font-size:14px;line-height:1.3}
+.install-toast span{display:block;font-size:12.5px;color:var(--text-secondary);line-height:1.35}
+.install-toast .btn{padding:10px 14px;font-size:14px}
+.it-x{background:none;border:0;color:var(--text-secondary);font-size:26px;line-height:1;width:32px;height:40px;cursor:pointer}
+@media (min-width:721px){.install-toast{left:auto;right:92px;width:440px}}
+@media (max-width:380px){.install-toast{grid-template-columns:40px 1fr auto}.install-toast span{display:none}.install-toast .it-x{grid-column:3;grid-row:1}.install-toast .btn{grid-column:1/-1}}
+.ios-sheet{border:1px solid var(--line-strong);border-radius:26px;padding:0;background:linear-gradient(170deg,var(--panel-2),var(--panel));color:var(--text-primary);max-width:min(420px,calc(100vw - 32px));width:100%;box-shadow:0 40px 120px -30px rgba(0,0,0,.9)}
+.ios-sheet::backdrop{background:rgba(3,14,20,.7);backdrop-filter:blur(4px)}
+.ios-sheet[open]{animation:pagein .5s var(--ease-out)}
+.ios-sheet form{padding:28px 26px;display:grid;justify-items:start;gap:4px}
+.ios-sheet img{border-radius:16px;margin-bottom:10px}
+.ios-sheet h3{font-size:36px;text-transform:uppercase}
+.ios-sheet ol{margin:14px 0 22px;padding-left:20px;display:grid;gap:12px;color:var(--text-secondary)}
+.ios-sheet ol b{color:var(--text-primary)}
+.ios-sheet ol svg{display:inline-block;width:18px;height:18px;vertical-align:-3px;color:var(--water)}
+.ios-sheet .btn{width:100%}
+[hidden]{display:none!important}
+
 body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}
 .offscreen,.offscreen *{animation-play-state:paused!important}
 
@@ -491,6 +529,7 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
     <li><a href="#batches">Batches</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li class="install-li" hidden><button class="install-btn nav-install" type="button" data-install><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Install app</button></li>
   </ul>
   <a class="btn btn-primary" href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg><span>Book a session</span></a>
   <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
@@ -887,6 +926,11 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
       <h3>Sanjay Kumar · Swimming Coach</h3>
       <p>Head Coach at Baroda Swim Front, Vadodara. Teaching confidence, safety and real technique, one swimmer at a time.</p>
       <p class="areas">Personal swimming training at home and society pools across Vadodara, including Gotri, Vasna-Bhayli, Alkapuri, Akota, Sama, Harni and nearby areas. Further out? Ask.</p>
+      <div class="appcard" data-install-card hidden>
+        <img src="assets/icons/icon-192.png" width="56" height="56" alt="" loading="lazy">
+        <div><b>Get the Coach Sanjay app</b><span>Batches, services and booking, one tap from your home screen. Free, no app store.</span></div>
+        <button class="btn btn-ghost" type="button" data-install>Install</button>
+      </div>
     </div>
     <div>
       <h3>Explore</h3>
@@ -905,6 +949,26 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   </div>
   <div class="legal"><span>© 2026 Sanjay Kumar · Swimming coach in Vadodara</span><span>Race footage: Inter-school swimming competition 2026, Baroda Swim Front</span></div>
 </footer>
+
+<div class="install-toast" id="installToast" role="dialog" aria-labelledby="it-title" hidden>
+  <img src="assets/icons/icon-192.png" width="44" height="44" alt="">
+  <div><b id="it-title">Get the Coach Sanjay app</b><span>Free. Book in one tap.</span></div>
+  <button class="btn btn-primary" type="button" data-install>Install</button>
+  <button class="it-x" type="button" id="installClose" aria-label="Not now">×</button>
+</div>
+
+<dialog class="ios-sheet" id="iosSheet" aria-labelledby="ios-title">
+  <form method="dialog">
+    <img src="assets/icons/icon-192.png" width="64" height="64" alt="">
+    <h3 id="ios-title">Install on iPhone</h3>
+    <ol>
+      <li>Tap the <b>Share</b> button <svg viewBox="0 0 24 24" aria-label="share icon" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M8 7l4-4 4 4M5 11v9h14v-9"/></svg> in Safari.</li>
+      <li>Scroll down and tap <b>Add to Home Screen</b>.</li>
+      <li>Tap <b>Add</b>. Coach Sanjay is now on your home screen.</li>
+    </ol>
+    <button class="btn btn-primary" value="ok">Got it</button>
+  </form>
+</dialog>
 
 <a class="wa-float" id="waFloat" href="https://wa.me/919896424193?text=Hi%20Sanjay%20sir%2C%20I%27d%20like%20to%20know%20about%20swimming%20classes." target="_blank" rel="noopener" aria-label="Chat with Sanjay Kumar on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg></a>
 
@@ -1270,6 +1334,54 @@ form.addEventListener('submit', e => {
   form.classList.add('done');
 });
 $('#again').addEventListener('click', () => form.classList.remove('done'));
+/* ---------- install the app (PWA) ---------- */
+const installEls = $$('[data-install]');
+const installLi = $('.install-li'), installCard = $('[data-install-card]');
+const toast = $('#installToast'), iosSheet = $('#iosSheet');
+const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+let deferredPrompt = null, toastTimer = null;
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+};
+function showInstallUI() {
+  if (standalone) return;
+  installLi.hidden = false; installCard.hidden = false;
+  const dismissed = +store.get('installDismissed') || 0;
+  if (Date.now() - dismissed < 14 * 864e5) return;
+  if (!matchMedia('(pointer: coarse)').matches) return;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { toast.hidden = false; requestAnimationFrame(() => toast.classList.add('show')); }, 9000);
+}
+function hideInstallUI() {
+  installLi.hidden = true; installCard.hidden = true;
+  clearTimeout(toastTimer); hideToast();
+}
+function hideToast() {
+  if (toast.hidden) return;
+  toast.classList.remove('show');
+  setTimeout(() => { toast.hidden = true; }, RM.matches ? 0 : 600);
+}
+async function doInstall() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    if (outcome === 'accepted') hideInstallUI(); else hideToast();
+  } else if (isIOS) {
+    hideToast();
+    if (iosSheet.showModal) iosSheet.showModal(); else iosSheet.setAttribute('open', '');
+  }
+}
+installEls.forEach(b => b.addEventListener('click', doInstall));
+$('#installClose').addEventListener('click', () => { store.set('installDismissed', Date.now()); hideToast(); });
+addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferredPrompt = e; showInstallUI(); });
+addEventListener('appinstalled', () => { deferredPrompt = null; hideInstallUI(); });
+if (isIOS && !standalone) showInstallUI();
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+}
 })();
 </script>
 </body>
